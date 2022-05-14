@@ -13,8 +13,8 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
            Container(
-             width: 240,
-             height: 240,
+             width: MediaQuery.of(context).size.width * 0.8,
+             height: 340,
              margin: const EdgeInsets.only(
                bottom: 40,
              ),
@@ -24,14 +24,6 @@ class SplashScreen extends StatelessWidget {
                   'assets/icons/icon.png',
                 ),
               ),
-            ),
-           ),
-           Text(
-             "Plane Ticket",
-            style: whiteTextStyle.copyWith(
-              fontSize: 32, 
-              fontWeight: medium, 
-              letterSpacing: 10
             ),
            ),
           ],

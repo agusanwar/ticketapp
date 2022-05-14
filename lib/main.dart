@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticketapp/ui/screens/splash_screen.dart';
+import 'package:ticketapp/ui/screens/started_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {
-        '/': (context) => const SplashScreen()
-      }
+      // 
+      home: StartedScreen(),
     );
   }
 }

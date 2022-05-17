@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ticketapp/ui/screens/sign_in.dart';
+import 'package:ticketapp/ui/pages/main_pages.dart';
+import 'package:ticketapp/ui/screens/sign_in_screen.dart';
 import 'package:ticketapp/ui/screens/sign_up_screen.dart';
 import 'package:ticketapp/ui/screens/splash_screen.dart';
 import 'package:ticketapp/ui/screens/started_screen.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/started': (context) => StartedScreen(),
         '/sign-up': (context) => SignUpScreen(),
         '/sign-in': (context) => SignInScreen(),
+        '/main-pages': (context) => MainPages(),
      },
     );
   }

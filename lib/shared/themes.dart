@@ -7,16 +7,20 @@ double defaultMargin = 24.0;
 double defaultRadius = 30;
 
 Color kPrimaryColor = const Color(0xff0000FF);
+Color kSecondaryColor =  const Color(0xFFEBEDF4);
 Color kBlackColor = const Color(0xff05060C);
 Color kWhiteColor = const Color(0xffFFFFFF);
-Color kGreyColor =const Color(0xff44445D);
+Color kGreyColor =const Color(0xFFADB5BD);
 Color kGreeenColor = const Color(0xff0EC3AE);
-Color kRedColor = const Color(0xffEB70A5);
+Color kRedColor = Color(0xFFF8262F);
+Color kYellowColor = Color(0xFFFFCF00);
 Color kBackgroundColor =  const Color(0xffFAFAFA);
 Color kInactiveColor =  const Color(0xffDBD7EC);
 Color kTransparentColor = Colors.transparent;
 Color kAvailableColor = const Color(0xff82AFF9);
-Color kUnvailableColor =  const Color(0xffEBECF1);
+
+Color kInputField = Color(0xFFF3F3F3);
+
 
 TextStyle blackTextStyle = GoogleFonts.poppins(
   color: kBlackColor,

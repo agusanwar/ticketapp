@@ -28,20 +28,15 @@ class StartedScreen extends StatelessWidget {
                 Text(
                   'Plane Ticket App',
                   style: whiteTextStyle.copyWith(
-                    fontSize: 32,
-                    fontWeight: semiBold,
-                    letterSpacing: 5
-                  ),
+                      fontSize: 32, fontWeight: semiBold, letterSpacing: 5),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
                   'Explore a new city with us\nyou will find comfort in it',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: light
-                  ),
+                  style:
+                      whiteTextStyle.copyWith(fontSize: 16, fontWeight: light),
                   textAlign: TextAlign.center,
                 ),
                 Padding(
@@ -56,16 +51,16 @@ class StartedScreen extends StatelessWidget {
                       ),
                       primary: kPrimaryColor,
                     ),
-                    onPressed: (){},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/sign-in');
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Get Started',
                           style: whiteTextStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: medium
-                          ),
+                              fontSize: 16, fontWeight: medium),
                         ),
                         Icon(Icons.arrow_circle_right_outlined),
                       ],

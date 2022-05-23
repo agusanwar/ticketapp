@@ -31,7 +31,7 @@ class CustomBottom extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: whiteTextStyle.copyWith(fontSize: 18, fontWeight: medium),
+          style: whiteTextStyle.copyWith(fontSize: 18, fontWeight: semiBold),
         ),
       ),
     );

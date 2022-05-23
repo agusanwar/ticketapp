@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ticketapp/ui/pages/main_pages.dart';
+import 'package:ticketapp/ui/screens/checkout_screen.dart';
+import 'package:ticketapp/ui/screens/seat_screen.dart';
 import 'package:ticketapp/ui/screens/sign_in_screen.dart';
 import 'package:ticketapp/ui/screens/sign_up_screen.dart';
 import 'package:ticketapp/ui/screens/splash_screen.dart';
 import 'package:ticketapp/ui/screens/started_screen.dart';
+import 'package:ticketapp/ui/screens/success_screen.dart';
 
 void main() {
  // Set Devisce Portrait Orientation
@@ -33,6 +36,9 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => SignUpScreen(),
         '/sign-in': (context) => SignInScreen(),
         '/main-pages': (context) => MainPages(),
+        '/seat-seat': (context) => SeatSeatScreen(),
+        '/checkout': (context) => CheckoutScreen(),
+        '/success-checkout': (context) => SuccessScreen(),
      },
     );
   }

@@ -37,7 +37,7 @@ class DetailScreen extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   colors: [
                     kWhiteColor.withOpacity(0),
-                    kBlackColor.withOpacity(0.95),
+                    kTransparentColor.withOpacity(0.95),
                   ]
                 )
               ),
@@ -125,7 +125,7 @@ class DetailScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                         CustomPhotoItem(imageUrl: 'assets/images/image_des2.png'),
+                         CustomPhotoItem(imageUrl: 'assets/images/image_pangandaran.png'),
                          CustomPhotoItem(imageUrl: 'assets/images/image_des11.png'),
                          CustomPhotoItem(imageUrl: 'assets/images/image_des10.png'),
                          CustomPhotoItem(imageUrl: 'assets/images/image_des3.png'),

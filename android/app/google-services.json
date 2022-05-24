@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "886998501065",
+    "project_id": "ticketapp-4deb8",
+    "storage_bucket": "ticketapp-4deb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886998501065:android:c0e8cff20f0008a6862f18",
+        "android_client_info": {
+          "package_name": "com.ai.ticketapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886998501065-56upm48tkb86ptktdgnq90eie8e3amlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk3n9CiS4KHF8Rhmxfr99KyJU-rp66Jt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886998501065-56upm48tkb86ptktdgnq90eie8e3amlo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

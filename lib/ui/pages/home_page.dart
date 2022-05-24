@@ -78,16 +78,16 @@ class HomePage extends StatelessWidget {
                     child: Row(
                       children: [
                        DestinationCard(
-                         name: 'Pasir Putih Beach', 
-                         imageUrl: 'assets/images/image_desc_pangandaran.png', 
-                         city: 'Bali, Indonesia',
-                         rating: 4.9,
+                         name: 'pangandaran', 
+                         imageUrl: 'assets/images/image_pangandaran.png', 
+                         city: 'Jawa Barat, Indonesia',
+                         rating: 4.7,
                         ),
                        DestinationCard(
-                         name: 'Malioboro', 
-                         imageUrl: 'assets/images/image_desc_jogja.png', 
-                         city: 'D.I Yogyakarta, Indonesia',
-                         rating: 4.7,
+                         name: 'Pasir Putih Beach', 
+                         imageUrl: 'assets/images/image_desc_pangandaran.png', 
+                         city: 'Jawa Barat, Indonesia',
+                         rating: 4.9,
                         ),
                        DestinationCard(
                          name: 'Uluwatu Beach', 

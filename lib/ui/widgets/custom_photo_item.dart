@@ -6,16 +6,12 @@ class CustomPhotoItem extends StatelessWidget {
   const CustomPhotoItem({
     Key? key,
     required this.imageUrl,
-    }) : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-        top: 20,
-        bottom: 30, 
-        right: 15
-      ),
+      margin: EdgeInsets.only(top: 20, bottom: 30, right: 15),
       width: 80,
       height: 80,
       decoration: BoxDecoration(

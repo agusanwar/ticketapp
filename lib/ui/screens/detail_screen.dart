@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ticketapp/models/destinaiton_model.dart';
 import 'package:ticketapp/shared/themes.dart';
 import 'package:ticketapp/ui/screens/seat_screen.dart';
 import 'package:ticketapp/ui/widgets/custom_bottom.dart';
 import 'package:ticketapp/ui/widgets/custom_photo_item.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  final DestinationModel destination;
+  const DetailScreen(this.destination, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +17,17 @@ class DetailScreen extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Stack(
           children: [
-           Container(
-             width: double.infinity,
-             height: MediaQuery.of(context).size.width * 1,
-             decoration: BoxDecoration(
-               image: DecorationImage(
-                 image: AssetImage('assets/images/image_desc_pangandaran.png'),
-                 fit: BoxFit.cover,
-               ),
-             ),
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.width * 1,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    destination.imageUrl!,
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             Container(
               height: 214,
@@ -32,17 +36,15 @@ class DetailScreen extends StatelessWidget {
                 top: MediaQuery.of(context).size.width * 0.5,
               ),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
                     kWhiteColor.withOpacity(0),
                     kTransparentColor.withOpacity(0.95),
-                  ]
-                )
-              ),
+                  ])),
             ),
-      
+
             // CONTENT
             Container(
               margin: EdgeInsets.only(
@@ -51,14 +53,12 @@ class DetailScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 24
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 24),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Navigator.pop(context);
                           },
                           child: Container(
@@ -69,14 +69,12 @@ class DetailScreen extends StatelessWidget {
                               color: kSecondaryColor,
                             ),
                             child: Center(
-                              child: Icon(Icons.arrow_back, color: kBlackColor ),
+                              child: Icon(Icons.arrow_back, color: kBlackColor),
                             ),
                           ),
                         ),
                         InkWell(
-                          onTap: (){
-
-                          },
+                          onTap: () {},
                           child: Container(
                             width: 40,
                             height: 40,
@@ -85,7 +83,10 @@ class DetailScreen extends StatelessWidget {
                               color: kSecondaryColor,
                             ),
                             child: Center(
-                              child: Icon(Icons.favorite, color: kGreyColor, ),
+                              child: Icon(
+                                Icons.favorite,
+                                color: kGreyColor,
+                              ),
                             ),
                           ),
                         ),
@@ -95,12 +96,10 @@ class DetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-      
+
             // DESCRIPTION
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 24
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 24),
               child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(
@@ -108,27 +107,29 @@ class DetailScreen extends StatelessWidget {
                   vertical: 15,
                 ),
                 margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.width * 0.95
-                ),
+                    top: MediaQuery.of(context).size.width * 0.95),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  color: kWhiteColor
-                ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    color: kWhiteColor),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                  children: [
                     // PHOTOS
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                         CustomPhotoItem(imageUrl: 'assets/images/image_pangandaran.png'),
-                         CustomPhotoItem(imageUrl: 'assets/images/image_des11.png'),
-                         CustomPhotoItem(imageUrl: 'assets/images/image_des10.png'),
-                         CustomPhotoItem(imageUrl: 'assets/images/image_des3.png'),
+                          CustomPhotoItem(
+                              imageUrl: 'assets/images/image_pangandaran.png'),
+                          CustomPhotoItem(
+                              imageUrl: 'assets/images/image_des11.png'),
+                          CustomPhotoItem(
+                              imageUrl: 'assets/images/image_des10.png'),
+                          CustomPhotoItem(
+                              imageUrl: 'assets/images/image_des3.png'),
                         ],
                       ),
                     ),
@@ -140,7 +141,7 @@ class DetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Pasir Putih Beach',
+                                destination.name!,
                                 style: blackTextStyle.copyWith(
                                     fontSize: 20, fontWeight: semiBold),
                               ),
@@ -148,9 +149,9 @@ class DetailScreen extends StatelessWidget {
                                 height: 5,
                               ),
                               Text(
-                                'Pangandaran',
-                                style:
-                                  greyTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+                                destination.city!,
+                                style: greyTextStyle.copyWith(
+                                    fontSize: 16, fontWeight: medium),
                               ),
                               SizedBox(
                                 height: 5,
@@ -158,7 +159,7 @@ class DetailScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                         Row(
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
@@ -176,8 +177,9 @@ class DetailScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '4.7',
-                              style: blackTextStyle.copyWith(fontWeight: medium),
+                              destination.rating.toString(),
+                              style:
+                                  blackTextStyle.copyWith(fontWeight: medium),
                             ),
                           ],
                         ),
@@ -185,10 +187,7 @@ class DetailScreen extends StatelessWidget {
                     ),
                     // ABOUT
                     Container(
-                      margin: EdgeInsets.only(
-                        top: 40,
-                        bottom: 10
-                      ),
+                      margin: EdgeInsets.only(top: 40, bottom: 10),
                       child: Text(
                         'About',
                         style: blackTextStyle.copyWith(
@@ -199,17 +198,12 @@ class DetailScreen extends StatelessWidget {
                     ),
                     Text(
                       'Pantai Pasir Putih Pangandaran merupakan salah satu objek wisata alam cukup terkenal di daerah Pangandaran lebih tepatnya di Pangandaran, Kabupaten Ciamis, Jawa Barat. panorama keindahan pantai yang memiliki pasir berwarna putih,',
-                      style: blackTextStyle.copyWith(
-                        height: 2
-                      ),
+                      style: blackTextStyle.copyWith(height: 2),
                     ),
-      
+
                     // BOOK NOW
                     Container(
-                      margin: EdgeInsets.only(
-                        top: 30,
-                        bottom: 20
-                      ),
+                      margin: EdgeInsets.only(top: 30, bottom: 20),
                       width: double.infinity,
                       child: Row(
                         children: [
@@ -219,18 +213,14 @@ class DetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '\$ 120',
+                                  '\$ ' + destination.price.toString(),
                                   style: blackTextStyle.copyWith(
-                                    fontSize: 20,
-                                    fontWeight: medium
-                                  ),
+                                      fontSize: 20, fontWeight: medium),
                                 ),
                                 Text(
                                   'Person',
                                   style: greyTextStyle.copyWith(
-                                    fontSize: 20,
-                                    fontWeight: light
-                                  ),
+                                      fontSize: 20, fontWeight: light),
                                 ),
                               ],
                             ),
@@ -239,7 +229,7 @@ class DetailScreen extends StatelessWidget {
                           CustomBottom(
                             title: 'Book Now',
                             width: 170,
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

@@ -1,0 +1,19 @@
+alur cubit
+//#1 destinaiton state
+    - model 
+        * destination model
+
+
+//#2 destinaiton services
+    - services
+        * destinaiton services
+
+
+//#3 destinaiton cubit
+    - destinaiton cubit
+
+//#4 Main.dart
+    - retrun provider bloc
+
+//#5 Home view
+    - add BlocConsumer

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ticketapp/cubit/auth_cubit.dart';
 import 'package:ticketapp/shared/themes.dart';
 import 'package:ticketapp/ui/widgets/custom_bottom.dart';
 import 'package:ticketapp/ui/widgets/custom_text_form_field.dart';
@@ -11,6 +13,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,14 +52,17 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget inputSection() {
     //input email address
-   Widget emailInput() {
+    Widget emailInput() {
       return CustomTextFormField(
-          imageUrl: 'assets/icons/icon_email.png', hintText: "Email Id");
+          controller: emailController,
+          imageUrl: 'assets/icons/icon_email.png',
+          hintText: "Email Id");
     }
 
     //input password
     Widget passwordInput() {
       return CustomTextFormField(
+        controller: passwordController,
         imageUrl: 'assets/icons/icon_password.png',
         obsecureText: true,
         hintText: "Password",
@@ -64,12 +71,36 @@ class _SignInScreenState extends State<SignInScreen> {
     }
 
     Widget signInButton() {
-      return CustomBottom(
-          margin: EdgeInsets.only(top: 60, bottom: 20),
-          title: "Sign In",
-          onPressed: () {
-            Navigator.pushNamed(context, '/main-pages');
-          });
+      return BlocConsumer<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if (state is AuthSuccess) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/main-pages', (route) => false);
+          } else if (state is AuthFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: kRedColor,
+                content: Text(state.error),
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return CustomBottom(
+              margin: EdgeInsets.only(top: 60),
+              title: "Sign In",
+              onPressed: () {
+                context.read<AuthCubit>().signIn(
+                    email: emailController.text,
+                    password: passwordController.text);
+              });
+        },
+      );
     }
 
     Widget signInGoogle() {

@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ticketapp/cubit/auth_cubit.dart';
+import 'package:ticketapp/cubit/destinaiton_cubit.dart';
 import 'package:ticketapp/cubit/page_cubit.dart';
 import 'package:ticketapp/ui/pages/main_pages.dart';
 import 'package:ticketapp/ui/screens/checkout_screen.dart';
@@ -13,7 +15,7 @@ import 'package:ticketapp/ui/screens/started_screen.dart';
 import 'package:ticketapp/ui/screens/success_screen.dart';
 
 Future<void> main() async {
- // Set Devisce Portrait Orientation
+  // Set Devisce Portrait Orientation
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([
@@ -29,7 +31,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => PageCubit())
+        BlocProvider(create: (context) => PageCubit()),
+        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => DestinaitonCubit()),
       ],
       child: MaterialApp(
         title: 'Plane Ticket',
@@ -37,8 +41,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        // 
-       routes: {
+        //
+        routes: {
           '/': (context) => SplashScreen(),
           '/started': (context) => StartedScreen(),
           '/sign-up': (context) => SignUpScreen(),
@@ -47,9 +51,8 @@ class MyApp extends StatelessWidget {
           '/seat-seat': (context) => SeatSeatScreen(),
           '/checkout': (context) => CheckoutScreen(),
           '/success-checkout': (context) => SuccessScreen(),
-       },
+        },
       ),
     );
   }
 }
-

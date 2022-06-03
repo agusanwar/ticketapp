@@ -27,6 +27,8 @@ dependencies:
 
   # State managememnt
   flutter_bloc: ^7.3.3
+  equatable: ^2.0.3
+
   # Firebase
   firebase_auth: ^3.3.18
   firebase_core: ^1.17.0

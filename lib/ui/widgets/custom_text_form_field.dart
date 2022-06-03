@@ -6,7 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final bool obsecureText;
   final bool icon;
-  // final TextEditingController controller;
+  final TextEditingController controller;
 
   const CustomTextFormField({
     Key? key,
@@ -14,7 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     this.obsecureText = false,
     this.icon = false,
-    // required this.controller,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -47,6 +47,7 @@ class CustomTextFormField extends StatelessWidget {
                   child: TextFormField(
                     style: blackTextStyle,
                     obscureText: obsecureText,
+                    controller: controller,
                     decoration: InputDecoration.collapsed(
                       hintText: hintText,
                       hintStyle: greyTextStyle,
@@ -54,11 +55,13 @@ class CustomTextFormField extends StatelessWidget {
                     cursorColor: kPrimaryColor,
                   ),
                 ),
-                icon ? Icon(
-                  Icons.remove_red_eye,
-                  color: kGreyColor,
-                  size: 15,
-                ) : SizedBox(),
+                icon
+                    ? Icon(
+                        Icons.remove_red_eye,
+                        color: kGreyColor,
+                        size: 15,
+                      )
+                    : SizedBox(),
               ],
             ),
           ),

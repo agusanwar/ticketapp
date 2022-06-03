@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ticketapp/models/destinaiton_model.dart';
 import 'package:ticketapp/shared/themes.dart';
 import 'package:ticketapp/ui/screens/detail_screen.dart';
 
 class DestinationCard extends StatelessWidget {
-  final String name;
-  final String imageUrl;
-  final String city;
-  final double rating;
+  final DestinationModel destination;
 
-  const DestinationCard({
+  const DestinationCard(
+    this.destination, {
     Key? key,
-    required this.name,
-    required this.imageUrl,
-    required this.city,
-    this.rating = 0.0,
   }) : super(key: key);
 
   @override
@@ -21,7 +16,7 @@ class DestinationCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DetailScreen()));
+            context, MaterialPageRoute(builder: (context) => DetailScreen(destination)));
       },
       child: Container(
         margin: EdgeInsets.only(left: 24),
@@ -39,8 +34,8 @@ class DestinationCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
-                  image: AssetImage(imageUrl),
-                ),
+                    image: NetworkImage(destination.imageUrl!),
+                    fit: BoxFit.cover),
               ),
               child: Align(
                 alignment: Alignment.topLeft,
@@ -70,7 +65,7 @@ class DestinationCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        rating.toString(),
+                        destination.rating.toString(),
                         style: blackTextStyle.copyWith(fontWeight: medium),
                       ),
                     ],
@@ -84,12 +79,12 @@ class DestinationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    destination.name!,
                     style: blackTextStyle.copyWith(
                         fontSize: 24, fontWeight: semiBold),
                   ),
                   Text(
-                    city,
+                    destination.city!,
                     style: blackTextStyle.copyWith(fontWeight: light),
                   ),
                 ],

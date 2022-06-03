@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ticketapp/cubit/auth_cubit.dart';
 import 'package:ticketapp/shared/themes.dart';
 import 'package:ticketapp/ui/widgets/custom_bottom.dart';
 import 'package:ticketapp/ui/widgets/custom_text_form_field.dart';
@@ -11,6 +13,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController nameController = TextEditingController(text: '');
+  final TextEditingController emailController = TextEditingController(text: '');
+  final TextEditingController passwordController =
+      TextEditingController(text: '');
+  final TextEditingController hobbyController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,18 +67,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
     //input Fullname
     Widget fullnameINput() {
       return CustomTextFormField(
-          imageUrl: 'assets/icons/icon_person.png', hintText: "Fullname");
+          controller: nameController,
+          imageUrl: 'assets/icons/icon_person.png',
+          hintText: "Fullname");
     }
 
     //input email address
     Widget emailInput() {
       return CustomTextFormField(
-          imageUrl: 'assets/icons/icon_email.png', hintText: "Email Id");
+          controller: emailController,
+          imageUrl: 'assets/icons/icon_email.png',
+          hintText: "Email Id");
     }
 
     //input password
     Widget passwordInput() {
       return CustomTextFormField(
+        controller: passwordController,
         imageUrl: 'assets/icons/icon_password.png',
         obsecureText: true,
         hintText: "Password",
@@ -81,18 +94,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
     //input Hobby
     Widget fessionInput() {
       return CustomTextFormField(
-        imageUrl: "assets/icons/icon_hobby.png", 
-        hintText: "Fassion / Hobby"
-      );
+          controller: hobbyController,
+          imageUrl: "assets/icons/icon_hobby.png",
+          hintText: "Fassion / Hobby");
     }
 
     Widget signInButton() {
-      return CustomBottom(
-          margin: EdgeInsets.only(top: 40),
-          title: "Sign Up",
-          onPressed: () {
-            Navigator.pushNamed(context, '/sign-in');
-          });
+      return BlocConsumer<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if (state is AuthSuccess) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/main-pages', (route) => false);
+          } else if (state is AuthFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: kRedColor,
+                content: Text(state.error),
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return CustomBottom(
+              margin: EdgeInsets.only(top: 40),
+              title: "Sign Up",
+              onPressed: () {
+                context.read<AuthCubit>().signUp(
+                    name: nameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    hobby: hobbyController.text);
+              });
+        },
+      );
     }
 
     return Container(
